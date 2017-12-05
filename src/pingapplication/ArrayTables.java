@@ -84,9 +84,10 @@ public class ArrayTables {
             }
             for (int count = 0 ; count <= PingApplication.X ; count++)
             {
-                PingApplication.outputStream.println (PingApplication.ipAddressArray[count]);
+                PingApplication.outputStream.println (PingApplication.ipAddressArray[count] + " " + PingApplication.OnlineStateArray[count]);
             }
             PingApplication.outputStream.close ();
+            JOptionPane.showMessageDialog(null, "Done.");
         }
     }
     
