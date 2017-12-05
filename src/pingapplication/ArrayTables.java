@@ -7,6 +7,9 @@
 	Change Log:	BE: N/A |
 */
 package pingapplication;
+import javax.swing.JOptionPane;
+import java.io.PrintWriter;          
+import java.io.FileNotFoundException;
 public class ArrayTables {
     
     /**
@@ -60,6 +63,30 @@ public class ArrayTables {
     public void getPingedIPs(){
         for (int k =0; k < PingApplication.X;k++) {
             System.out.println(PingApplication.ipAddressArray[k] + " " +PingApplication.OnlineStateArray[k]);                  
+        }
+    }
+    /**
+     * This method asks the user if they want an output of the IP addresses they pinged to a text file
+     */
+    public void createTxtFile(){
+        int createTextFileOption = JOptionPane.showConfirmDialog(null, "Would you like to save these pinged IP address to a text file?","Wait",PingApplication.dialogButton);
+        if (createTextFileOption == JOptionPane.YES_NO_OPTION) {           
+            PingApplication.fileName = "Out.txt";
+            try
+            {
+                PingApplication.outputStream = new PrintWriter (PingApplication.fileName);
+            }
+            catch (FileNotFoundException e)
+            {
+                System.out.println ("Error opening the file " +
+                        PingApplication.fileName);
+                System.exit (0);
+            }
+            for (int count = 0 ; count <= PingApplication.X ; count++)
+            {
+                PingApplication.outputStream.println (PingApplication.ipAddressArray[count]);
+            }
+            PingApplication.outputStream.close ();
         }
     }
     

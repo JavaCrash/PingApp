@@ -11,8 +11,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-//import java.io.PrintWriter;          
-//import java.io.FileNotFoundException;
+import java.io.PrintWriter;          
 /**
  *
  * @author Braden
@@ -24,12 +23,15 @@ public class PingApplication extends JFrame{
     public static String ipAddress;
     public static Integer X;
     public static String State;
+    public static String fileName;
+    public static PrintWriter outputStream = null;
+    public static int dialogButton = 0;
    
     public static void main(String[] args) {
         ArrayTables name = new ArrayTables();
         X = 0;
         String userChoice = "Y";
-        int dialogButton = 0;
+        
         
         while (userChoice.equalsIgnoreCase("Y")) {
             try {
@@ -58,27 +60,7 @@ public class PingApplication extends JFrame{
             userChoice = JOptionPane.showInputDialog("Enter Y if you would like to ping another IP address or website. Enter anything else to exit.");
         }
         JOptionPane.showMessageDialog(null, "Here is the list of IP addresses you pinged: ");
-        name.getPingedIPs();/*
-        int createTextFileOption = JOptionPane.showConfirmDialog(null, "Would you like to save these pinged IP address to a text file?","Wait",dialogButton);
-        if (createTextFileOption == JOptionPane.YES_NO_OPTION) {
-            try
-            {
-                outputStream = new PrintWriter (fileName);
-            }
-            catch (Exception e)
-            {
-                System.out.println ("Error opening the file " +
-                        fileName);
-                System.exit (0);
-            }
-            System.out.println ("Enter three lines of text:");
-            Scanner keyboard = new Scanner (System.in);
-            for (int count = 1 ; count <= 3 ; count++)
-            {
-                String line = keyboard.nextLine ();
-                outputStream.println (count + " " + line);
-            }
-            outputStream.close ();
-        }*/
+        name.getPingedIPs();
+        name.createTxtFile();
     }
 }
